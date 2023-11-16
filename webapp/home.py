@@ -1,11 +1,16 @@
 import justpy as jp
+from webapp import layout
+from webapp import page
 
-class Home:
+class Home(page.Page):
 	path = "/"
-
-	def serve(self):
+	@classmethod
+	def serve(cls, req):
 		wp = jp.QuasarPage(tailwind=True)
-		div = jp.Div(a=wp, classes="bg-gray-200 h-screen")
+		lay = layout.DefaultLayout(a=wp)
+		container = jp.QPageContainer(a=lay)
+		div = jp.Div(a=container, classes="bg-gray-200 h-screen")
+
 		jp.Div(a=div, text="This is the Home page!", classes="text-4xl m-2")
 		jp.Div(a=div, text="""
 				Caelum serenum et tranquillum est, ubi sol splendet et 
